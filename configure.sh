@@ -14,6 +14,9 @@ sudo dscl . -passwd /Users/vncuser $1
 sudo dscl . -passwd /Users/vncuser $1
 sudo createhomedir -c -u vncuser > /dev/null
 
+sudo sqlite3 '/Library/Application Support/com.apple.TCC/TCC.db' "INSERT INTO access VALUES('kTCCServicePostEvent','com.apple.screensharing.agent',0,2,4,1,NULL,NULL,0,'UNUSED',NULL,0,1639743960,NULL,NULL,'UNUSED',1764130243);"
+sudo sqlite3 '/Library/Application Support/com.apple.TCC/TCC.db' "INSERT INTO access VALUES('kTCCServiceScreenCapture','com.apple.screensharing.agent',0,2,4,1,NULL,NULL,0,'UNUSED',NULL,0,1639743960,NULL,NULL,'UNUSED',1764130243);"
+
 #Enable VNC
 sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -configure -allowAccessFor -allUsers -privs -all
 sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -configure -clientopts -setvnclegacy -vnclegacy yes 
