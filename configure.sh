@@ -29,4 +29,4 @@ sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resourc
 brew install frpc
 
 #configure frpc and start it
-frpc tcp -n rdp -s $3 -P 7000 -l 5900 -r 7001
+frpc tcp -n rdp -s $3 -P 7000 -l 5900 -r 7001 &
