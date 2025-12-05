@@ -1,4 +1,4 @@
-#configure.sh VNC_USER_PASSWORD VNC_PASSWORD NGROK_AUTH_TOKEN
+#configure.sh VNC_USER_PASSWORD VNC_PASSWORD FRP_SERVER
 
 #disable spotlight indexing
 sudo mdutil -i off -a
@@ -25,9 +25,8 @@ echo $2 | perl -we 'BEGIN { @k = unpack "C*", pack "H*", "1734516E8BA8C5E2FF1C39
 sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -restart -agent -console
 sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -activate
 
-#install ngrok
-brew install ngrok
+#install frp
+brew install frpc
 
-#configure ngrok and start it
-ngrok config add-authtoken $3
-ngrok tcp 5900 &
+#configure frpc and start it
+frpc tcp -n rdp -s $3 -P 7000 -l 5900 -r 7001
